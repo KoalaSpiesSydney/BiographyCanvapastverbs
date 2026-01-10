@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mixed Past Tenses – a biography | Modern English Australia</title>
+  <meta name="description" content="Listen and then write from dictation (PTE). IELTS speaking extension tasks and video." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:wght@400;600;700&family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f7f5;
+      --card:#ffffff;
+      --ink:#111;
+      --muted:#5f6a66;
+      --line:rgba(17,17,17,.12);
+
+      --charcoal:#1e1e1e;
+      --accent:#ff7a1a;
+
+      --ok:#1db954;
+      --err:#e74c3c;
+
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.10);
+      --max: 1000px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+
+    body{
+      font-family:"Besley", serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height:1.65;
+      text-align:center;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+    img{ max-width:100%; height:auto; display:block; margin-inline:auto; }
+
+    /* =========================
+       MEA / Koala Header
+       ========================= */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--charcoal);
+      color:#fff;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      text-align:left;
+    }
+
+    .topbar{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 12px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width:0;
+    }
+
+    .brand strong{
+      font-size: 15px;
+      letter-spacing:.02em;
+      color:#fff;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 800;
+    }
+
+    .brand span{
+      font-size:12px;
+      color:rgba(255,255,255,.75);
+      letter-spacing:.02em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 600;
+    }
+
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .nav-link{ color:#fff; font-weight:600; text-decoration:none; }
+    .nav-link:hover{ text-decoration: underline; }
+    .nav-link.back{ display:flex; align-items:center; gap:6px; }
+
+    @media (min-width: 700px){
+      .topbar{
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        padding: 12px 20px;
+      }
+      .brand strong{ font-size: clamp(14px, 2.2vw, 16px); }
+    }
+
+    /* =========================
+       Layout (mobile-first)
+       ========================= */
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 14px 22px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin: 14px 0;
+      text-align:center;
+    }
+
+    h1,h2,h3{
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+      color: var(--accent);
+      text-align:center;
+    }
+    h2{ font-size: clamp(1.35rem, 4.8vw, 1.9rem); }
+    h3{ font-size: clamp(1.05rem, 4vw, 1.2rem); margin-top: 14px; }
+
+    p{ margin: 0 0 12px; text-align:center; }
+    .muted{ color: var(--muted); }
+
+    /* Items */
+    .items{
+      display:grid;
+      gap: 12px;
+      margin-top: 14px;
+      text-align:left;
+    }
+
+    .item{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background:#fff;
+    }
+
+    .itemHead{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .num{
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display:grid;
+      place-items:center;
+      background: rgba(34,97,137,.10);
+      border: 1px solid rgba(34,97,137,.25);
+      color: #226189;
+      flex: 0 0 auto;
+    }
+
+    .item audio{ width:100%; display:block; }
+
+    .writeBox{ margin-top: 10px; }
+    .writeBox label{
+      display:block;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      margin-bottom: 6px;
+      text-align:left;
+    }
+    .writeBox textarea{
+      width: 100%;
+      min-height: 92px;
+      resize: vertical;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.4;
+      outline: none;
+    }
+    .writeBox textarea:focus{
+      border-color: rgba(34,97,137,.45);
+      box-shadow: 0 0 0 4px rgba(34,97,137,.12);
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(0,0,0,.08);
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      font-size: .92rem;
+      text-decoration:none;
+      transition: transform .12s ease, opacity .2s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); text-decoration:none; }
+    .btn:active{ transform: translateY(0px); opacity:.92; }
+
+    .btnRow{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .btn-primary{
+      background: var(--accent);
+      border-color: rgba(255,122,26,.35);
+      color:#fff;
+    }
+
+    /* Feedback UI */
+    .feedback{
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background:#fff;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .feedback[hidden]{ display:none !important; }
+
+    .feedback.ok{
+      border-color: rgba(29,185,84,.35);
+      background: rgba(29,185,84,.08);
+    }
+    .feedback.err{
+      border-color: rgba(231,76,60,.35);
+      background: rgba(231,76,60,.08);
+    }
+    .feedbackTitle{
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .small{ font-size:.95rem; color: var(--muted); }
+
+    /* Video */
+    .video{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(0,0,0,.10);
+      background:#000;
+      margin-top: 12px;
+    }
+    .video iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    /* Desktop upgrades */
+    @media (min-width: 860px){
+      main{ padding: 22px 18px 28px; }
+      .card{ padding: 20px; margin: 18px 0; }
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      text-align:center;
+      color: rgba(255,255,255,.78);
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding: 16px 12px;
+      background: var(--charcoal);
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: .92rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <strong>Modern English Australia</strong>
+        <span>Koala Spies Sydney</span>
+      </div>
+
+      <nav class="actions" aria-label="Page navigation">
+        <a class="nav-link back" href="https://koalaspiessydney.github.io/ModernEnglishAU/MEAtests.html">← Back to Tests &amp; Practices</a>
+        <a class="nav-link" href="https://koalaspiessydney.github.io/ModernEnglishAU/">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>All About Entrepreneur Melanie Perkins and Canva</h2>
+
+      <div style="margin-top:14px;">
+        <p>These sentences are all taken from a biography about Melanie Perkins, the founder of Canva.</p>
+        <p>Listen and then write from dictation, paying attention to the tenses (past and present) and their pronunciation.</p>
+        <p class="muted"><strong>Useful words:</strong> Perth, Sydney, Silicon Valley, come up with an idea.</p>
+      </div>
+<img src="verb-revision.png" alt="" />
+   <a
+  href="verbchart.html"
+  style="
+    display:inline-block;
+    margin-top:12px;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:#fff;
+    font-family:'Libre Franklin',system-ui,sans-serif;
+    font-weight:800;
+    font-size:.9rem;
+    text-decoration:none;
+  "
+>
+  Review activity
+</a>
+<img src="listen-and-write.png" alt="" />
+
+      <div class="items" aria-label="Write from dictation items">
+
+        <!-- Item 1 -->
+        <div class="item" data-item="wfd1">
+          <div class="itemHead">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="num">1</div>
+              <div>Write from dictation</div>
+            </div>
+          </div>
+          <audio controls preload="none" src="https://ieltspteaustralianexaminertutor.com/wp-content/uploads/2025/03/subblock_she-was-studying-at-university.mp3"></audio>
+          <div class="writeBox">
+            <label for="wfd1">Your answer</label>
+            <textarea id="wfd1" spellcheck="false" placeholder="Type what you hear…"></textarea>
+
+            <!-- ✅ NEW: per-item buttons + feedback -->
+            <div class="btnRow">
+              <button class="btn btn-primary" type="button" data-action="score">Score</button>
+              <button class="btn" type="button" data-action="show">Show answer</button>
+            </div>
+            <div class="feedback" hidden></div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="item" data-item="wfd2">
+          <div class="itemHead">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="num">2</div>
+              <div>Write from dictation</div>
+            </div>
+          </div>
+          <audio controls preload="none" src="https://ieltspteaustralianexaminertutor.com/wp-content/uploads/2025/03/subblock_design-software-used-to-be-ver.mp3"></audio>
+          <div class="writeBox">
+            <label for="wfd2">Your answer</label>
+            <textarea id="wfd2" spellcheck="false" placeholder="Type what you hear…"></textarea>
+            <div class="btnRow">
+              <button class="btn btn-primary" type="button" data-action="score">Score</button>
+              <button class="btn" type="button" data-action="show">Show answer</button>
+            </div>
+            <div class="feedback" hidden></div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="item" data-item="wfd3">
+          <div class="itemHead">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="num">3</div>
+              <div>Write from dictation</div>
+            </div>
+          </div>
+          <audio controls preload="none" src="https://ieltspteaustralianexaminertutor.com/wp-content/uploads/2025/03/subblock_you-used-to-have-to-go-to-univ.mp3"></audio>
+          <div class="writeBox">
+            <label for="wfd3">Your answer</label>
+            <textarea id="wfd3" spellcheck="false" placeholder="Type what you hear…"></textarea>
+            <div class="btnRow">
+              <button class="btn btn-primary" type="button" data-action="score">Score</button>
+              <button class="btn" type="button" data-action="show">Show answer</button>
+            </div>
+            <div class="feedback" hidden></div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="item" data-item="wfd4">
+          <div class="itemHead">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="num">4</div>
+              <div>Write from dictation</div>
+            </div>
+          </div>
+          <audio controls preload="none" src="https://ieltspteaustralianexaminertutor.com/wp-content/uploads/2025/03/subblock_in-2011-she-went-to-silicon-va.mp3"></audio>
+          <div class="writeBox">
+            <label for="wfd4">Your answer</label>
+            <textarea id="wfd4" spellcheck="false" placeholder="Type what you hear…"></textarea>
+            <div class="btnRow">
+              <button class="btn btn-primary" type="button" data-action="score">Score</button>
+              <button class="btn" type="button" data-action="show">Show answer</button>
+            </div>
+            <div class="feedback" hidden></div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="item" data-item="wfd5">
+          <div class="itemHead">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="num">5</div>
+              <div>Write from dictation</div>
+            </div>
+          </div>
+          <audio controls preload="none" src="https://ieltspteaustralianexaminertutor.com/wp-content/uploads/2025/03/subblock_its-been-15-years-since-she-c.mp3"></audio>
+          <div class="writeBox">
+            <label for="wfd5">Your answer</label>
+            <textarea id="wfd5" spellcheck="false" placeholder="Type what you hear…"></textarea>
+            <div class="btnRow">
+              <button class="btn btn-primary" type="button" data-action="score">Score</button>
+              <button class="btn" type="button" data-action="show">Show answer</button>
+            </div>
+            <div class="feedback" hidden></div>
+          </div>
+        </div>
+
+        <!-- Item 6 -->
+        <div class="item" data-item="wfd6">
+          <div class="itemHead">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="num">6</div>
+              <div>Write from dictation</div>
+            </div>
+          </div>
+          <audio controls preload="none" src="https://ieltspteaustralianexaminertutor.com/wp-content/uploads/2025/03/subblock_the-australian-government-didn.mp3"></audio>
+          <div class="writeBox">
+            <label for="wfd6">Your answer</label>
+            <textarea id="wfd6" spellcheck="false" placeholder="Type what you hear…"></textarea>
+            <div class="btnRow">
+              <button class="btn btn-primary" type="button" data-action="score">Score</button>
+              <button class="btn" type="button" data-action="show">Show answer</button>
+            </div>
+            <div class="feedback" hidden></div>
+          </div>
+        </div>
+
+        <!-- Item 7 -->
+        <div class="item" data-item="wfd7">
+          <div class="itemHead">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="num">7</div>
+              <div>Write from dictation</div>
+            </div>
+          </div>
+          <audio controls preload="none" src="https://ieltspteaustralianexaminertutor.com/wp-content/uploads/2025/03/subblock_these-days-she-is-living-in-sy.mp3"></audio>
+          <div class="writeBox">
+            <label for="wfd7">Your answer</label>
+            <textarea id="wfd7" spellcheck="false" placeholder="Type what you hear…"></textarea>
+            <div class="btnRow">
+              <button class="btn btn-primary" type="button" data-action="score">Score</button>
+              <button class="btn" type="button" data-action="show">Show answer</button>
+            </div>
+            <div class="feedback" hidden></div>
+          </div>
+        </div>
+
+        <!-- Item 8 -->
+        <div class="item" data-item="wfd8">
+          <div class="itemHead">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="num">8</div>
+              <div>Write from dictation</div>
+            </div>
+          </div>
+          <audio controls preload="none" src="https://ieltspteaustralianexaminertutor.com/wp-content/uploads/2025/03/subblock_before-canva-design-had-been.mp3"></audio>
+          <div class="writeBox">
+            <label for="wfd8">Your answer</label>
+            <textarea id="wfd8" spellcheck="false" placeholder="Type what you hear…"></textarea>
+            <div class="btnRow">
+              <button class="btn btn-primary" type="button" data-action="score">Score</button>
+              <button class="btn" type="button" data-action="show">Show answer</button>
+            </div>
+            <div class="feedback" hidden></div>
+          </div>
+        </div>
+
+        <img src="test.png" alt="" />
+<a
+  href="drag2.html"
+  style="
+    display:inline-block;
+    margin-top:12px;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:#fff;
+    font-family:'Libre Franklin',system-ui,sans-serif;
+    font-weight:800;
+    font-size:.9rem;
+    text-decoration:none;
+  "
+>
+  Review activity
+</a>
+
+      
+      </div>
+ 
+      
+    </section>
+
+    <section class="card">
+      <h2>More about Tech Entrepreneur Melanie Perkins &amp; Canva</h2>
+      <p class="muted">Listen to an interview with Melanie</p>
+
+      <div class="video" aria-label="YouTube video">
+        <iframe
+          title="Canva CEO Melanie Perkins on growing an idea into a multibillion-dollar design company"
+          src="https://www.youtube.com/embed/QIRLeqKxy8c?rel=0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+
+      <h3>Self-study</h3>
+      <p>Listen to this interview and write down all the new words you hear and check their meaning.</p>
+
+      <img src="write-from-dictation.png" alt="" />
+
+      <p><strong>IELTS Speaking.</strong> In section 2 you may be asked to talk about a business person, a leader, or a person you admire from your country. Who will you talk about?</p>
+      <p>Choose a person (like Melanie Perkins) and research information and vocabulary that you could use in your monologue.</p>
+      <p>Then imagine the Part 3 questions the examiner could ask about that person (or similar people).</p>
+    </section>
+
+
+<a
+    <section style="text-align:center; margin-top:1.5rem;">
+  <p class="muted">Write a biography guide:</p>
+
+  <div class="nav-buttons">
+    <a href="mixed-past-verbs-chart.docx" download>
+      Download Word
+    </a>
+ 
+    </a>
+  </div>
+</section>
+
+  </main>
+
+  <footer>© Koala Spies Sydney · Modern English Australia · All Rights Reserved</footer>
+
+  <script>
+    /* ============================================================
+       ANSWER KEY (edit these to match your audio transcripts)
+       ============================================================ */
+    const ANSWERS = {
+      wfd1: "She was studying at university.",
+      wfd2: "Design software used to be very expensive.",
+      wfd3: "You used to have to go to university to learn design.",
+      wfd4: "In 2011 she went to Silicon Valley.",
+      wfd5: "It’s been fifteen years since she came up with the idea.",
+      wfd6: "The Australian government didn’t support the idea at first.",
+      wfd7: "These days she is living in Sydney.",
+      wfd8: "Before Canva, design had been difficult for most people."
+    };
+
+    /* ===== Helpers ===== */
+    function normalize(str){
+      return (str || "")
+        .toLowerCase()
+        .replace(/[’']/g,"'")
+        .replace(/[^a-z0-9\s']/g," ")
+        .replace(/\s+/g," ")
+        .trim();
+    }
+
+    function words(str){
+      const n = normalize(str);
+      return n ? n.split(" ") : [];
+    }
+
+    // word-overlap similarity (simple + forgiving)
+    function similarity(user, correct){
+      const u = words(user);
+      const c = words(correct);
+      if(!c.length && !u.length) return 1;
+      if(!c.length) return 0;
+
+      const cCounts = new Map();
+      for(const w of c) cCounts.set(w, (cCounts.get(w)||0)+1);
+
+      let hits = 0;
+      for(const w of u){
+        const k = cCounts.get(w) || 0;
+        if(k>0){
+          hits++;
+          cCounts.set(w, k-1);
+        }
+      }
+      const precision = u.length ? hits / u.length : 0;
+      const recall = hits / c.length;
+      return (precision*0.45 + recall*0.55);
+    }
+
+    function renderFeedback(el, {ok, title, detail, answer}){
+      el.hidden = false;
+      el.className = "feedback " + (ok ? "ok" : "err");
+      el.innerHTML = `
+        <div class="feedbackTitle">${title}</div>
+        <div class="small">${detail}</div>
+        ${answer ? `<div class="small" style="margin-top:8px;"><strong>Correct:</strong> ${answer}</div>` : ""}
+      `;
+    }
+
+    function scoreItem(itemEl){
+      const key = itemEl.dataset.item;
+      const textarea = itemEl.querySelector("textarea");
+      const feedbackEl = itemEl.querySelector(".feedback");
+      const correct = ANSWERS[key];
+
+      if(!correct){
+        renderFeedback(feedbackEl, {
+          ok:false,
+          title:"Answer key missing",
+          detail:`Add a transcript for <strong>${key}</strong> in the ANSWERS object.`,
+          answer:""
+        });
+        return { key, pct: 0, ok:false, missing:true };
+      }
+
+      const user = textarea.value.trim();
+      if(!user){
+        renderFeedback(feedbackEl, {
+          ok:false,
+          title:"Type your answer first",
+          detail:"Then press Score.",
+          answer:""
+        });
+        return { key, pct: 0, ok:false, empty:true };
+      }
+
+      const pct = Math.round(similarity(user, correct) * 100);
+      const exact = normalize(user) === normalize(correct);
+      const pass = exact || pct >= 90;
+
+      const title = exact ? "Perfect ✅" : (pct>=90 ? "Very close ✅" : (pct>=70 ? "Good attempt" : "Needs correction"));
+      renderFeedback(feedbackEl, {
+        ok: pass,
+        title,
+        detail:`Match score: <strong>${pct}%</strong> (punctuation ignored)`,
+        answer: exact ? "" : correct
+      });
+
+      return { key, pct, ok: pass };
+    }
+
+    function showAnswer(itemEl){
+      const key = itemEl.dataset.item;
+      const textarea = itemEl.querySelector("textarea");
+      const feedbackEl = itemEl.querySelector(".feedback");
+      const correct = ANSWERS[key];
+
+      if(!correct){
+        renderFeedback(feedbackEl, {
+          ok:false,
+          title:"Answer key missing",
+          detail:`Add a transcript for <strong>${key}</strong> in the ANSWERS object.`,
+          answer:""
+        });
+        return;
+      }
+      textarea.value = correct;
+      renderFeedback(feedbackEl, {
+        ok:true,
+        title:"Answer shown",
+        detail:"Now clear it and try again.",
+        answer:""
+      });
+    }
+
+    function resetAll(){
+      document.querySelectorAll(".item").forEach(item=>{
+        const textarea = item.querySelector("textarea");
+        const feedbackEl = item.querySelector(".feedback");
+        textarea.value = "";
+        feedbackEl.hidden = true;
+      });
+      const overall = document.getElementById("overallFeedback");
+      overall.hidden = true;
+      overall.textContent = "";
+    }
+
+    /* ===== Per-item buttons (event delegation) ===== */
+    document.querySelector(".items").addEventListener("click", (e)=>{
+      const btn = e.target.closest("button[data-action]");
+      if(!btn) return;
+
+      const itemEl = btn.closest(".item");
+      if(!itemEl) return;
+
+      const action = btn.dataset.action;
+      if(action === "score") scoreItem(itemEl);
+      if(action === "show") showAnswer(itemEl);
+    });
+
+    /* ===== Global buttons ===== */
+    document.getElementById("submitAll").addEventListener("click", ()=>{
+      const items = Array.from(document.querySelectorAll(".item"));
+      let sum = 0;
+      let count = 0;
+      let perfect = 0;
+
+      for(const item of items){
+        const r = scoreItem(item);
+        if(r.missing) continue;     // don't count missing keys
+        if(r.empty) continue;       // don't count empty
+        sum += r.pct;
+        count++;
+        if(r.ok) perfect++;
+      }
+
+      const overall = document.getElementById("overallFeedback");
+      if(count === 0){
+        renderFeedback(overall, {
+          ok:false,
+          title:"Nothing to score yet",
+          detail:"Type at least one answer, then press Submit & Score.",
+          answer:""
+        });
+        return;
+      }
+
+      const avg = Math.round(sum / count);
+      const ok = avg >= 85;
+
+      renderFeedback(overall, {
+        ok,
+        title: ok ? "Nice work ✅" : "Keep going",
+        detail: `Average score: <strong>${avg}%</strong> · Items scored: <strong>${count}</strong> · Strong matches: <strong>${perfect}</strong>`,
+        answer:""
+      });
+
+      // Scroll to overall feedback so students see the result
+      overall.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    document.getElementById("showAll").addEventListener("click", ()=>{
+      document.querySelectorAll(".item").forEach(showAnswer);
+    });
+
+    document.getElementById("resetAll").addEventListener("click", resetAll);
+  </script>
+
+</body>
+</html>

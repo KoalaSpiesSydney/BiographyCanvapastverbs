@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mixed Past Tenses – Matching | Modern English Australia</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Besley:wght@400;600;700&family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f7f5;
+      --card:#ffffff;
+      --ink:#111;
+      --muted:#5f6a66;
+      --line:rgba(17,17,17,.12);
+
+      --charcoal:#1e1e1e;
+      --accent:#ff7a1a;
+
+      /* Cube + matching tokens */
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.10);
+      --max: 1000px;
+
+      /* Sentence vs Explanation palettes */
+      --s-bg:#eef6ff;
+      --s-edge:#cfe6ff;
+      --s-ink:#12324d;
+
+      --e-bg:#fff4ea;
+      --e-edge:#ffd8bd;
+      --e-ink:#4a2a12;
+
+      /* Feedback */
+      --ok:#1db954;
+      --err:#e74c3c;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+
+    body{
+      font-family:"Besley", serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height:1.65;
+      text-align:center;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    /* =========================
+       MEA / Koala Header
+       ========================= */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--charcoal);
+      color:#fff;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      text-align:left;
+    }
+    .topbar{
+      max-width: var(--max);
+      margin:0 auto;
+      padding: 12px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width:0;
+    }
+    .brand strong{
+      font-size: 15px;
+      letter-spacing:.02em;
+      color:#fff;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 800;
+    }
+    .brand span{
+      font-size:12px;
+      color:rgba(255,255,255,.75);
+      letter-spacing:.02em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 600;
+    }
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .nav-link{
+      color:#fff;
+      font-weight:600;
+      text-decoration:none;
+    }
+    .nav-link:hover{ text-decoration: underline; }
+    .nav-link.back{ display:flex; align-items:center; gap:6px; }
+
+    @media (min-width: 700px){
+      .topbar{
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        padding: 12px 20px;
+      }
+      .brand strong{ font-size: clamp(14px, 2.2vw, 16px); }
+    }
+
+    /* =========================
+       Page layout (mobile-first)
+       ========================= */
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 14px 22px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin: 14px 0;
+      text-align:center;
+    }
+
+    h1,h2,h3{
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+      color: var(--accent);
+      text-align:center;
+    }
+    h2{ font-size: clamp(1.35rem, 4.8vw, 1.9rem); }
+
+    p{ margin: 0 0 12px; }
+    .muted{ color: var(--muted); }
+
+    .howto{
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* =========================
+       Magnet matching UI
+       ========================= */
+    .matchWrap{
+      margin-top: 14px;
+      display:grid;
+      gap: 14px;
+    }
+
+    /* mobile: stacked blocks */
+    .lane{
+      display:grid;
+      gap: 10px;
+      text-align:left;
+    }
+
+    .laneTitle{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing:.02em;
+      color: var(--ink);
+      text-align:left;
+    }
+
+    .laneTitle .tag{
+      font-size:.85rem;
+      font-weight:800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background:#fff;
+      color: var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr; /* mobile: single column for easy tapping */
+      gap: 10px;
+    }
+
+    /* make tap targets easier */
+    @media (min-width: 520px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* tablet/desktop: two columns side-by-side lanes */
+    @media (min-width: 900px){
+      .matchWrap{
+        grid-template-columns: 1fr 1fr;
+        align-items:start;
+      }
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    /* =========================
+       Cube cards (soft dice illusion)
+       ========================= */
+    .tile{
+      position: relative;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      padding: 12px 12px 12px 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform .10s ease, box-shadow .12s ease, filter .12s ease;
+      min-height: 86px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+    }
+
+    /* top highlight + bottom edge to feel cube-ish */
+    .tile::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.55), rgba(255,255,255,0) 55%);
+      pointer-events:none;
+      opacity:.55;
+    }
+    .tile::after{
+      content:"";
+      position:absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 8px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.08);
+      filter: blur(10px);
+      pointer-events:none;
+      opacity:.6;
+    }
+
+    .tile:active{ transform: translateY(1px); }
+
+    .badge{
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display:grid;
+      place-items:center;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing:.02em;
+      border: 1px solid rgba(0,0,0,.10);
+      background:#fff;
+    }
+
+    .tileText{
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.3;
+      font-size: .98rem;
+    }
+
+    /* sentence tiles */
+    .tile.sentence{
+      background: var(--s-bg);
+      border-color: var(--s-edge);
+      color: var(--s-ink);
+      box-shadow: 0 10px 18px rgba(18,50,77,.10);
+    }
+    .tile.sentence .badge{
+      background: rgba(18,50,77,.08);
+      border-color: rgba(18,50,77,.18);
+      color: var(--s-ink);
+    }
+
+    /* explanation tiles */
+    .tile.expl{
+      background: var(--e-bg);
+      border-color: var(--e-edge);
+      color: var(--e-ink);
+      box-shadow: 0 10px 18px rgba(74,42,18,.10);
+    }
+    .tile.expl .badge{
+      background: rgba(74,42,18,.08);
+      border-color: rgba(74,42,18,.18);
+      color: var(--e-ink);
+    }
+
+    /* selected state */
+    .tile.selected{
+      outline: 3px solid rgba(255,122,26,.35);
+      box-shadow: 0 14px 24px rgba(255,122,26,.18);
+      transform: translateY(-1px);
+    }
+
+    /* matched state: gets a “magnet glow” using a CSS variable */
+    .tile.matched{
+      outline: 3px solid var(--pairGlow, rgba(29,185,84,.35));
+      box-shadow: 0 18px 28px rgba(0,0,0,.12);
+      filter: saturate(1.05);
+    }
+
+    .pairLine{
+      margin-top: 10px;
+      display:grid;
+      gap: 8px;
+      text-align:left;
+    }
+    .pairItem{
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background:#fff;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .pairItem strong{ white-space:nowrap; }
+
+    /* Buttons */
+    .btnRow{
+      margin-top: 14px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      box-shadow: 0 10px 26px rgba(0,0,0,.08);
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      font-size: .92rem;
+      cursor:pointer;
+      transition: transform .12s ease, opacity .2s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn.primary{
+      background: var(--accent);
+      border-color: rgba(0,0,0,.06);
+      color:#fff;
+    }
+    .btn.ghost{ background:#fff; }
+
+    .feedback{
+      margin-top: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      padding: 12px 12px;
+      background:#fff;
+      text-align:center;
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .feedback.ok{
+      border-color: rgba(29,185,84,.35);
+      background: rgba(29,185,84,.08);
+    }
+    .feedback.err{
+      border-color: rgba(231,76,60,.35);
+      background: rgba(231,76,60,.08);
+    }
+    .feedback .title{
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .small{ font-size:.95rem; color: var(--muted); }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      text-align:center;
+      color: rgba(255,255,255,.78);
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding: 16px 12px;
+      background: var(--charcoal);
+      font-family:"Libre Franklin", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: .92rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <strong>Modern English Australia</strong>
+        <span>Koala Spies Sydney</span>
+      </div>
+
+      <nav class="actions" aria-label="Page navigation">
+        <a class="nav-link back" href="https://koalaspiessydney.github.io/ModernEnglishAU/MEAtests.html">← Back to Tests &amp; Practices</a>
+        <a class="nav-link" href="https://koalaspiessydney.github.io/ModernEnglishAU/">Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Matching Activity: Sentences &amp; Tense Explanations</h2>
+      <div class="howto">
+        <p class="muted">
+          Mobile-friendly: tap a <strong>sentence</strong>, then tap an <strong>explanation</strong>. They’ll “snap” together.
+          Tap either matched card to unpair it.
+        </p>
+      </div>
+
+      <div class="matchWrap" aria-label="Matching activity">
+        <!-- Sentences -->
+        <div class="lane">
+          <div class="laneTitle">
+            <span>Sentences</span>
+            <span class="tag">Tap one</span>
+          </div>
+          <div id="sentenceGrid" class="grid"></div>
+        </div>
+
+        <!-- Explanations -->
+        <div class="lane">
+          <div class="laneTitle">
+            <span>Explanations</span>
+            <span class="tag">Tap to match</span>
+          </div>
+          <div id="explainGrid" class="grid"></div>
+        </div>
+      </div>
+
+      <div class="btnRow">
+        <button class="btn primary" id="checkBtn" type="button">Check score</button>
+        <button class="btn ghost" id="resetBtn" type="button">Reset</button>
+        <button class="btn ghost" id="showBtn" type="button">Show answers</button>
+      </div>
+
+      <div id="feedback" class="feedback" hidden></div>
+
+      <div class="pairLine" aria-label="Your matches" style="margin-top:14px;">
+        <div class="small" style="text-align:center;">
+          Your matches will appear here (useful for teachers projecting on a board).
+        </div>
+        <div id="pairList"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© Koala Spies Sydney · Modern English Australia · All Rights Reserved</footer>
+
+  <script>
+    // ----------------------------
+    // Data (MIXED order on purpose)
+    // ----------------------------
+    const sentences = [
+      { id:"s4", label:"4", text:"In 2011 she went to Silicon Valley to sell her idea." },
+      { id:"s1", label:"1", text:"She was studying at university in Perth when she came up with the idea." },
+      { id:"s7", label:"7", text:"These days she is living in Sydney and is worth 10 billion dollars." },
+      { id:"s2", label:"2", text:"Design software used to be very difficult." },
+      { id:"s8", label:"8", text:"Before Canva, design had been difficult to learn but now everyone can do it." },
+      { id:"s5", label:"5", text:"It’s been 15 years since she came up with the idea for Canva." },
+      { id:"s3", label:"3", text:"You used to have to go to university to design simple documents." },
+      { id:"s6", label:"6", text:"The Australian government didn’t want Canva to go to America, so they gave her money." },
+    ];
+
+    const explanations = [
+      { id:"eG", label:"G", text:"Present continuous for a current situation + present simple for a present fact." },
+      { id:"eB", label:"B", text:"Past state or habit that is no longer true." },
+      { id:"eE", label:"E", text:"Present perfect measuring time from a past event to now." },
+      { id:"eA", label:"A", text:"Past continuous action interrupted by a past simple action." },
+      { id:"eH", label:"H", text:"Past perfect describing a state before another past point." },
+      { id:"eD", label:"D", text:"Completed action at a specific time in the past." },
+      { id:"eC", label:"C", text:"Past requirement or habit that no longer exists." },
+      { id:"eF", label:"F", text:"Two completed past actions in sequence." },
+    ];
+
+    // Correct pairs: sentenceId -> explainId
+    const answerKey = {
+      s1:"eA",
+      s2:"eB",
+      s3:"eC",
+      s4:"eD",
+      s5:"eE",
+      s6:"eF",
+      s7:"eG",
+      s8:"eH",
+    };
+
+    // ----------------------------
+    // State
+    // ----------------------------
+    let selectedSentence = null;
+    let selectedExpl = null;
+
+    // matches: sentenceId -> explainId
+    const matches = new Map();
+
+    // color per pair index for glow
+    const GLOW_COLORS = [
+      "rgba(255,122,26,.45)",
+      "rgba(34,97,137,.38)",
+      "rgba(29,185,84,.38)",
+      "rgba(142,68,173,.34)",
+      "rgba(241,196,15,.32)",
+      "rgba(231,76,60,.32)",
+      "rgba(0,150,136,.32)",
+      "rgba(52,152,219,.32)"
+    ];
+
+    function pairIndexFor(sentenceId){
+      // stable index by sentence number
+      const n = parseInt(sentenceId.replace("s",""), 10);
+      return (isNaN(n) ? 0 : (n-1)) % GLOW_COLORS.length;
+    }
+
+    // ----------------------------
+    // Render
+    // ----------------------------
+    const sentenceGrid = document.getElementById("sentenceGrid");
+    const explainGrid = document.getElementById("explainGrid");
+    const pairList = document.getElementById("pairList");
+    const feedback = document.getElementById("feedback");
+
+    function makeTile(kind, item){
+      const div = document.createElement("div");
+      div.className = `tile ${kind}`;
+      div.dataset.id = item.id;
+
+      const badge = document.createElement("div");
+      badge.className = "badge";
+      badge.textContent = item.label;
+
+      const text = document.createElement("div");
+      text.className = "tileText";
+      text.textContent = item.text;
+
+      div.appendChild(badge);
+      div.appendChild(text);
+
+      div.addEventListener("click", () => onTileClick(kind, item.id));
+      return div;
+    }
+
+    function render(){
+      sentenceGrid.innerHTML = "";
+      explainGrid.innerHTML = "";
+      sentences.forEach(s => sentenceGrid.appendChild(makeTile("sentence", s)));
+      explanations.forEach(e => explainGrid.appendChild(makeTile("expl", e)));
+      refreshUI();
+    }
+
+    function refreshUI(){
+      // clear selected/matched classes
+      document.querySelectorAll(".tile").forEach(t=>{
+        t.classList.remove("selected","matched");
+        t.style.removeProperty("--pairGlow");
+      });
+
+      // apply selected classes
+      if(selectedSentence){
+        const el = document.querySelector(`.tile.sentence[data-id="${selectedSentence}"]`);
+        if(el) el.classList.add("selected");
+      }
+      if(selectedExpl){
+        const el = document.querySelector(`.tile.expl[data-id="${selectedExpl}"]`);
+        if(el) el.classList.add("selected");
+      }
+
+      // apply matched state
+      for(const [sId, eId] of matches.entries()){
+        const glow = GLOW_COLORS[pairIndexFor(sId)];
+        const sEl = document.querySelector(`.tile.sentence[data-id="${sId}"]`);
+        const eEl = document.querySelector(`.tile.expl[data-id="${eId}"]`);
+        if(sEl){ sEl.classList.add("matched"); sEl.style.setProperty("--pairGlow", glow); }
+        if(eEl){ eEl.classList.add("matched"); eEl.style.setProperty("--pairGlow", glow); }
+      }
+
+      // render match list
+      pairList.innerHTML = "";
+      if(matches.size === 0){
+        const empty = document.createElement("div");
+        empty.className = "small";
+        empty.style.textAlign = "center";
+        empty.textContent = "No matches yet — start by tapping a sentence, then an explanation.";
+        pairList.appendChild(empty);
+        return;
+      }
+
+      // show in sentence order 1..8
+      const ordered = [...matches.entries()].sort((a,b)=>{
+        const an = parseInt(a[0].replace("s",""),10);
+        const bn = parseInt(b[0].replace("s",""),10);
+        return an - bn;
+      });
+
+      for(const [sId, eId] of ordered){
+        const s = sentences.find(x=>x.id===sId);
+        const e = explanations.find(x=>x.id===eId);
+        const row = document.createElement("div");
+        row.className = "pairItem";
+        row.innerHTML = `<strong>${s?.label ?? "?"} → ${e?.label ?? "?"}</strong><span>${s?.text ?? ""}</span>`;
+        pairList.appendChild(row);
+      }
+    }
+
+    // ----------------------------
+    // Matching behaviour
+    // ----------------------------
+    function unpairSentence(sentenceId){
+      // remove sentence->expl
+      const oldExpl = matches.get(sentenceId);
+      if(oldExpl) matches.delete(sentenceId);
+
+      // also ensure no other sentence is paired with that expl (shouldn't happen, but safe)
+      for(const [s,e] of matches.entries()){
+        if(e === oldExpl) matches.delete(s);
+      }
+    }
+
+    function unpairExpl(explId){
+      for(const [s,e] of matches.entries()){
+        if(e === explId){
+          matches.delete(s);
+          break;
+        }
+      }
+    }
+
+    function pair(sentenceId, explId){
+      // each sentence can have only one explanation
+      unpairSentence(sentenceId);
+      // each explanation can be used only once
+      unpairExpl(explId);
+
+      matches.set(sentenceId, explId);
+    }
+
+    function onTileClick(kind, id){
+      // tap matched card = unpair it (nice mobile behaviour)
+      if(kind === "sentence" && matches.has(id)){
+        unpairSentence(id);
+        selectedSentence = null;
+        selectedExpl = null;
+        refreshUI();
+        return;
+      }
+      if(kind === "expl"){
+        // if this expl is already used, unpair
+        const used = [...matches.values()].includes(id);
+        if(used){
+          unpairExpl(id);
+          selectedSentence = null;
+          selectedExpl = null;
+          refreshUI();
+          return;
+        }
+      }
+
+      if(kind === "sentence"){
+        selectedSentence = (selectedSentence === id) ? null : id;
+      } else {
+        selectedExpl = (selectedExpl === id) ? null : id;
+      }
+
+      // if both selected, pair them
+      if(selectedSentence && selectedExpl){
+        pair(selectedSentence, selectedExpl);
+        selectedSentence = null;
+        selectedExpl = null;
+      }
+
+      refreshUI();
+    }
+
+    // ----------------------------
+    // Controls
+    // ----------------------------
+    document.getElementById("resetBtn").addEventListener("click", ()=>{
+      matches.clear();
+      selectedSentence = null;
+      selectedExpl = null;
+      feedback.hidden = true;
+      render();
+    });
+
+    document.getElementById("showBtn").addEventListener("click", ()=>{
+      matches.clear();
+      for(const sId in answerKey){
+        matches.set(sId, answerKey[sId]);
+      }
+      selectedSentence = null;
+      selectedExpl = null;
+
+      feedback.hidden = false;
+      feedback.className = "feedback ok";
+      feedback.innerHTML = `
+        <div class="title">Answers shown</div>
+        <div class="small">Tap any matched card to unpair and try again.</div>
+      `;
+      refreshUI();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("checkBtn").addEventListener("click", ()=>{
+      const total = Object.keys(answerKey).length;
+      let correct = 0;
+
+      for(const [sId, eId] of matches.entries()){
+        if(answerKey[sId] === eId) correct++;
+      }
+
+      const completed = matches.size === total;
+      const pct = Math.round((correct / total) * 100);
+
+      feedback.hidden = false;
+
+      if(correct === total && completed){
+        feedback.className = "feedback ok";
+        feedback.innerHTML = `
+          <div class="title">Perfect ✅</div>
+          <div class="small">You matched <strong>${correct}/${total}</strong> correctly.</div>
+        `;
+      } else {
+        feedback.className = "feedback err";
+        feedback.innerHTML = `
+          <div class="title">Score</div>
+          <div class="small">Correct: <strong>${correct}/${total}</strong> (${pct}%).</div>
+          <div class="small">${completed ? "All pairs attempted." : "Keep going — you haven’t matched them all yet."}</div>
+        `;
+      }
+
+      // keep feedback visible
+      feedback.scrollIntoView({ behavior:"smooth", block:"nearest" });
+    });
+
+    // init
+    render();
+  </script>
+</body>
+</html>
